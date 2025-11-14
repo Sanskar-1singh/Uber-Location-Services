@@ -54,10 +54,11 @@ public class LocationServiceImpl implements LocationService{
 
             List<DriverLocationDto> driverIds = new ArrayList<>();
             for(GeoResult<RedisGeoCommands.GeoLocation<String>> result:results){
+                Point point=geoOps.position(DRIVER_GEO_OPS_KEY,result.getContent().getName()).get(0);
                 DriverLocationDto driverLocationDto= DriverLocationDto.builder()
                         .driverId(result.getContent().getName())
-                        .latitude(result.getContent().getPoint().getX())
-                        .longitude(result.getContent().getPoint().getY())
+                        .latitude(point.getX())
+                        .longitude(point.getY())
                         .build();
 
                 driverIds.add(driverLocationDto);
