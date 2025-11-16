@@ -41,7 +41,7 @@ public class RedisController {
         }
     }
 
-    @GetMapping()
+    @PostMapping("/nearby/drivers")
     public ResponseEntity<List<DriverLocationDto>> getNearByDrivers(@RequestBody NearByDriverRequestDto nearByDriverRequestDto) {
         try{
            List<DriverLocationDto> response=locationService.getDriverLocations(nearByDriverRequestDto.getLatitude()

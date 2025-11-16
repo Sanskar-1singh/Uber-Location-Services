@@ -26,15 +26,18 @@ public class LocationServiceImpl implements LocationService{
     public Boolean saveDriverLocation(String driverId, Double latitude, Double longitude) {
 
         try{
-            //to perfom any opertaion based upon geodata we can use below geoOps object that give
-            // us various geo based functionality>>
+            /**
+             * to perfom any opertaion based upon geodata we can use below geoOps object that give
+             *  us various geo based functionality>>
+             */
             GeoOperations<String, String> geoOps = stringRedisTemplate.opsForGeo();
 
             geoOps.add(DRIVER_GEO_OPS_KEY, new Point(latitude
                        ,longitude),driverId);
-
-        // geoOps.add(DRIVER_GEO_OPS_KEY,new RedisGeoCommands.GeoLocation<>(saveDriverLocationDto.getDriverId()
-        //,new Point(saveDriverLocationDto.getLatitude(),saveDriverLocationDto.getLongitude())));
+            /**
+             * geoOps.add(DRIVER_GEO_OPS_KEY,new RedisGeoCommands.GeoLocation<>(saveDriverLocationDto.getDriverId()
+             new Point(saveDriverLocationDto.getLatitude(),saveDriverLocationDto.getLongitude())));
+             */
             return true;
         }
         catch (Exception ex){
